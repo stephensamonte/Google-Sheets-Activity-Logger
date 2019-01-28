@@ -1,0 +1,68 @@
+// Runs on edit
+function onEdit(event) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var s = event.source.getActiveSheet();
+  var r = event.source.getActiveRange();
+  
+  // if task completed then timestamp and archive (Completed when "a" inputted)
+  if(s.getName() == "Main" && r.getColumn() == 5 && r.getValue() == "a") {
+    
+    // Add time stamp archived to the right of the cell that was edited
+    var nextCell = r.offset(0, 1);
+    // Checks if cell to the right is empty
+    if( nextCell.getValue() === '' ){
+      nextCell.setValue(new Date());
+    }
+    
+    // Retrieve the row where the edit occured
+    var row = r.getRow();
+    // Retrieve the column where the edit occured
+    var numColumns = s.getLastColumn();
+    
+    // gets sheets to place data into 
+    var targetSheet = ss.getSheetByName("Archive");
+    var target = targetSheet.getRange(targetSheet.getLastRow() + 1, 1);
+    
+    s.getRange(row, 1, 1, numColumns).moveTo(target);
+    
+    // Remove the row from the main sheet
+    s.deleteRow(row);
+  }
+  
+  
+  
+  // if item added then add a time stamp
+  if( s.getName() == "Main" && r.getColumn() == 3 ) {
+    
+    // Get the cell to the right of the cell edited 
+    var timestampCell = r.offset(0, 1);
+    // get the cell to the left of the cell edited
+    var usernameCell = r.offset(0, -1);
+    
+    //SpreadsheetApp.getActiveSheet().getRange('F2').setValue(Session.getEffectiveUser().getUsername());
+    
+    // Determine if the event is undefined. 
+    if (typeof event.value === 'undefined'){
+      // do nothing 
+      
+    } else {
+      // Add the current date to teh timestamp cell
+      timestampCell.setValue(new Date());    
+      //usernameCell.setValue(Session.getTemporaryActiveUserKey()); 
+      
+      // Add the person's email to the usernameCell
+       usernameCell.setValue(Session.getEffectiveUser().getEmail());
+//      usernameCell.setValue(Session.getEffectiveUser().getUsername());
+    }
+  }
+}
+
+// Test funciton that is not used
+function myFunction() {
+  
+  // Archive Data Function
+  
+  // Writes hello to cell F2
+  SpreadsheetApp.getActiveSheet().getRange('F2').setValue('Hello');
+}
+
