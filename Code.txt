@@ -29,8 +29,6 @@ function onEdit(event) {
     s.deleteRow(row);
   }
   
-  
-  
   // if item added then add a time stamp
   if( s.getName() == "Main" && r.getColumn() == 3 ) {
     
@@ -47,22 +45,79 @@ function onEdit(event) {
       
     } else {
       // Add the current date to teh timestamp cell
-      timestampCell.setValue(new Date());    
-      //usernameCell.setValue(Session.getTemporaryActiveUserKey()); 
-      
-      // Add the person's email to the usernameCell
-       usernameCell.setValue(Session.getEffectiveUser().getEmail());
-//      usernameCell.setValue(Session.getEffectiveUser().getUsername());
+      timestampCell.setValue(new Date());
     }
   }
 }
+
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  // Or DocumentApp or FormApp.
+  ui.createMenu('Logging')
+      .addItem('Log Learning', 'log1')
+      .addItem('Log Product-Dev', 'log2')
+      .addItem('Log Business-Dev', 'log3')
+      .addToUi();
+}
+
+function log1() {
+  logEvent(1);
+}
+
+function log2() {
+  logEvent(2);
+}
+
+function log3() {
+  logEvent(3);
+}
+
+
+/**
+ * creates prompt for user to input log and appends it to the sheet
+ */
+function logEvent(int) {
+  var ui = SpreadsheetApp.getUi(); // Same variations.
+  var result = ui.prompt('Log your work:', ui.ButtonSet.OK_CANCEL);
+
+  // Process the user's response.
+  var button = result.getSelectedButton();
+  var text = result.getResponseText();
+  
+  if (button == ui.Button.OK && text != "") {
+    // User clicked "OK".    
+    appendLog(text, int);
+  } 
+}
+
+/**
+ * Function appends text to first empty row
+ */
+function appendLog(text, int) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheets()[0];
+  var lastRow = sheet.getLastRow() + 1;
+  
+  if (int == 1) {
+    sheet.getRange(lastRow, 1).setValue("Learning");
+  } else if (int == 2) {
+    sheet.getRange(lastRow, 1).setValue("Product-Dev");
+  } else if (int == 3) {
+    sheet.getRange(lastRow, 1).setValue("Business-Dev");
+  }
+  
+  sheet.getRange(lastRow, 2).setValue(Session.getActiveUser().getEmail());
+  sheet.getRange(lastRow, 3).setValue(text);
+  sheet.getRange(lastRow, 4).setValue(new Date);
+}
+
+
 
 // Test funciton that is not used
 function myFunction() {
   
   // Archive Data Function
   
-  // Writes hello to cell F2
-  SpreadsheetApp.getActiveSheet().getRange('F2').setValue('Hello');
+  // Writes hello to cell G1
+  SpreadsheetApp.getActiveSheet().getRange('G1').setValue('Hello');
 }
-
