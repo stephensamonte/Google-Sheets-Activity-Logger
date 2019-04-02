@@ -50,15 +50,42 @@ function onEdit(event) {
   }
 }
 
-function onOpen() {
-  var ui = SpreadsheetApp.getUi();
-  // Or DocumentApp or FormApp.
-  ui.createMenu('Logging')
-      .addItem('Log Learning', 'log1')
-      .addItem('Log Product-Dev', 'log2')
-      .addItem('Log Business-Dev', 'log3')
-      .addToUi();
+function archiveTopRow(){
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var s = ss.getActiveSheet(); 
+  // Add time stamp archived to the right of the cell that was edited
+  // Write a to archive column
+
+  var nextCell = SpreadsheetApp.getActiveSheet().getRange('F2');
+  // Check if cell is empty
+  if( nextCell.getValue() === '' ){
+    nextCell.setValue(new Date());
+  }
+  
+  // Retrieve the row where the edit occured
+  var row = 2;
+  // Retrieve the columns to move
+  var numColumns = 6;
+  
+  // gets sheets to place data into 
+  var targetSheet = ss.getSheetByName("Archive");
+  var target = targetSheet.getRange(targetSheet.getLastRow() + 1, 1);
+  
+  s.getRange(row, 1, 1, numColumns).moveTo(target);
+  
+  // Remove the row from the main sheet
+  s.deleteRow(row);
 }
+
+//function onOpen() {
+//  var ui = SpreadsheetApp.getUi();
+//  // Create custom menu for logging events
+//  ui.createMenu('Logging')
+//      .addItem('Log Learning', 'log1')
+//      .addItem('Log Product-Dev', 'log2')
+//      .addItem('Log Business-Dev', 'log3')
+//      .addToUi();
+//}
 
 function log1() {
   logEvent(1);
