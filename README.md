@@ -16,3 +16,4 @@ Create a new google sheet that looks like the template sheet. Go to tools, then 
 
 # Journal
 - 2019.01.28 Added template Spreadsheet and code for the spreadsheet. [Showcase](https://www.youtube.com/watch?v=Rqq9wrsRovg&feature=youtu.be)
+- 2019.04.01 LuisC Added a custom menu for logging.
