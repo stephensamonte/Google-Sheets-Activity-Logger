@@ -5,7 +5,7 @@ This is a spreadheet where you can write completed tasks and archive them when y
 Link to copyable Goolge Sheet: https://docs.google.com/spreadsheets/d/1AKjV3JM1nci-H9CzG0O7gb_8yjItCqwCvW8YBFnk318/edit?usp=sharing
 
 ## Click to Play Video: 
-[![Aptitude Android Application Promo | Train Yourself](https://img.youtube.com/vi/Rqq9wrsRovg/0.jpg)](https://www.youtube.com/watch?v=Rqq9wrsRovg)
+[![Aptitude Android Application Promo | Train Yourself](https://img.youtube.com/vi/SbF1GqCiUwc/0.jpg)](https://www.youtube.com/watch?v=SbF1GqCiUwc)
 
 # Notes: 
 - This is for Google Sheets
