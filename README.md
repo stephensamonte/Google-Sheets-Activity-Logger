@@ -16,4 +16,9 @@ Create a new google sheet that looks like the template sheet. Go to tools, then 
 
 # Journal
 - 2019.01.28 Added template Spreadsheet and code for the spreadsheet. [Showcase](https://www.youtube.com/watch?v=Rqq9wrsRovg&feature=youtu.be)
-- 2019.04.01 LuisC Added a custom menu for logging.
+- 2019.04.01 LuisC Added a custom menu for logging. [Showcase](https://www.youtube.com/watch?v=KNM6R8idi3o&feature=youtu.be)
+- 2019.04.02 Added Buttons for logging so that there are less clicks to log and shorter wait time than creating a custom menu. [Showcase](https://www.youtube.com/watch?v=SbF1GqCiUwc&feature=youtu.be)
+
+# References: 
+- [How to create a Google Sheet Button to Run Script](https://www.youtube.com/watch?v=9gmo1_8yeL8)
+- [Google Sheets API Documentation](https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet-app)
